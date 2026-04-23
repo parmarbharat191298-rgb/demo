@@ -1,0 +1,10 @@
+import express from "express";
+import { getProfile, updateProfile, addWallet, getAllUsers, toggleUserStatus } from "../controllers/user.controller.js";
+import { protect, adminOnly } from "../middleware/auth.middleware.js";
+const router = express.Router();
+router.get("/profile", protect, getProfile);
+router.put("/profile", protect, updateProfile);
+router.post("/wallet/add", protect, addWallet);
+router.get("/", protect, adminOnly, getAllUsers);
+router.put("/:id/toggle", protect, adminOnly, toggleUserStatus);
+export default router;

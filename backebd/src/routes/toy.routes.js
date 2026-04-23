@@ -1,0 +1,10 @@
+import express from "express";
+import { getAllToys, getToyById, createToy, updateToy, deleteToy } from "../controllers/toy.controller.js";
+import { protect, adminOnly } from "../middleware/auth.middleware.js";
+const router = express.Router();
+router.get("/", getAllToys);
+router.get("/:id", getToyById);
+router.post("/", protect, adminOnly, createToy);
+router.put("/:id", protect, adminOnly, updateToy);
+router.delete("/:id", protect, adminOnly, deleteToy);
+export default router;
